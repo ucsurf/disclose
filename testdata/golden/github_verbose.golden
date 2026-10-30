@@ -1,0 +1,9 @@
+Target: github:plain/lib
+
+#  PRIORITY  TYPE               CHANNEL                    SOURCE                                                NOTE
+1  3         security.md-email  mailto:jane.doe@plain.dev  https://github.com/plain/lib/blob/master/SECURITY.md  
+
+Checks:
+  github:repo                             found      default_branch=master
+  github:private-vulnerability-reporting  not-found  disabled
+  github:SECURITY.md                      found      

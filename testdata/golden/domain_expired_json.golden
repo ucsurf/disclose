@@ -1,0 +1,35 @@
+{
+  "input": "old.example",
+  "target": {
+    "kind": "domain",
+    "name": "old.example"
+  },
+  "channels": [
+    {
+      "priority": 9,
+      "type": "security.txt-expired",
+      "value": "mailto:psirt@old.example",
+      "source": "https://old.example/.well-known/security.txt",
+      "note": "security.txt invalid: expired on 2024-01-01"
+    }
+  ],
+  "checks": [
+    {
+      "name": "security.txt:old.example",
+      "status": "found",
+      "detail": "expired on 2024-01-01"
+    }
+  ],
+  "security_txt": {
+    "url": "https://old.example/.well-known/security.txt",
+    "contacts": [
+      "mailto:psirt@old.example"
+    ],
+    "expires": "2024-01-01T00:00:00Z",
+    "signed": false,
+    "valid": false,
+    "problems": [
+      "expired on 2024-01-01"
+    ]
+  }
+}

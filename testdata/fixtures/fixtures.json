@@ -1,0 +1,19 @@
+{
+  "_comment": "Recorded HTTP interactions. Key = request path (+query) on the replay server; prefixes map to real hosts (see fixture_test.go).",
+  "/gh-api/repos/acme/widget": {"status": 200, "body": "gh_repo_acme.json"},
+  "/gh-api/repos/acme/widget/private-vulnerability-reporting": {"status": 200, "body": "pvr_on.json"},
+  "/gh-raw/acme/widget/main/SECURITY.md": {"status": 404},
+  "/gh-raw/acme/widget/main/.github/SECURITY.md": {"status": 200, "body": "security_acme.md"},
+  "/gh-api/repos/plain/lib": {"status": 200, "body": "gh_repo_plain.json"},
+  "/gh-api/repos/plain/lib/private-vulnerability-reporting": {"status": 200, "body": "pvr_off.json"},
+  "/gh-raw/plain/lib/master/SECURITY.md": {"status": 200, "body": "security_plain.md"},
+  "/gh-api/repos/ghost/none": {"status": 404},
+  "/gl-api/projects/group%2Fsub%2Ftool": {"status": 200, "body": "gl_project.json"},
+  "/gl-api/projects/group%2Fsub%2Ftool/repository/files/SECURITY.md/raw?ref=main": {"status": 200, "body": "gl_security.md"},
+  "/web/acme.example/.well-known/security.txt": {"status": 200, "body": "sectxt_valid.txt"},
+  "/web/old.example/.well-known/security.txt": {"status": 200, "body": "sectxt_expired.txt"},
+  "/web/plain.dev/.well-known/security.txt": {"status": 404},
+  "/npm/@acme%2Fwidget": {"status": 200, "body": "npm_widget.json"},
+  "/pypi/pypi/plainlib/json": {"status": 200, "body": "pypi_plainlib.json"},
+  "/crates/api/v1/crates/tool": {"status": 200, "body": "crates_tool.json"}
+}

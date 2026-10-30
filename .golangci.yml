@@ -1,0 +1,18 @@
+version: "2"
+linters:
+  enable:
+    - errcheck
+    - govet
+    - staticcheck
+    - unused
+    - ineffassign
+    - misspell
+    - gosec
+  exclusions:
+    rules:
+      - path: (_test\.go|internal/fixture/)
+        linters: [gosec]
+      - linters: [errcheck]
+        source: "fmt.Fprint"
+formatters:
+  enable: [gofmt]

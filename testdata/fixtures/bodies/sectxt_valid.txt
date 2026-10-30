@@ -1,0 +1,5 @@
+# Acme security contact
+Contact: mailto:security@acme.example
+Contact: https://acme.example/security/report
+Expires: 2027-03-01T00:00:00Z
+Policy: https://acme.example/security/policy

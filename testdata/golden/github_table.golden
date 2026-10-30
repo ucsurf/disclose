@@ -1,0 +1,10 @@
+Target: github:acme/widget
+Home:   https://acme.example
+
+#  PRIORITY  TYPE               CHANNEL                                                 SOURCE                                                        NOTE
+1  1         github-pvr         https://github.com/acme/widget/security/advisories/new  GitHub API                                                    private vulnerability reporting enabled
+2  2         security.txt       mailto:security@acme.example                            https://acme.example/.well-known/security.txt                 
+3  2         security.txt       https://acme.example/security/report                    https://acme.example/.well-known/security.txt                 
+4  3         security.md-email  mailto:security@acme.example                            https://github.com/acme/widget/blob/main/.github/SECURITY.md  
+5  4         security.md-link   https://acme.example/security/pgp.asc                   https://github.com/acme/widget/blob/main/.github/SECURITY.md  
+6  4         security.md-link   https://hackerone.com/acme                              https://github.com/acme/widget/blob/main/.github/SECURITY.md  

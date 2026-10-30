@@ -1,0 +1,86 @@
+{
+  "input": "https://github.com/acme/widget",
+  "target": {
+    "kind": "github",
+    "owner": "acme",
+    "repo": "widget"
+  },
+  "homepage": "https://acme.example",
+  "channels": [
+    {
+      "priority": 1,
+      "type": "github-pvr",
+      "value": "https://github.com/acme/widget/security/advisories/new",
+      "source": "GitHub API",
+      "note": "private vulnerability reporting enabled"
+    },
+    {
+      "priority": 2,
+      "type": "security.txt",
+      "value": "mailto:security@acme.example",
+      "source": "https://acme.example/.well-known/security.txt"
+    },
+    {
+      "priority": 2,
+      "type": "security.txt",
+      "value": "https://acme.example/security/report",
+      "source": "https://acme.example/.well-known/security.txt"
+    },
+    {
+      "priority": 3,
+      "type": "security.md-email",
+      "value": "mailto:security@acme.example",
+      "source": "https://github.com/acme/widget/blob/main/.github/SECURITY.md"
+    },
+    {
+      "priority": 4,
+      "type": "security.md-link",
+      "value": "https://acme.example/security/pgp.asc",
+      "source": "https://github.com/acme/widget/blob/main/.github/SECURITY.md"
+    },
+    {
+      "priority": 4,
+      "type": "security.md-link",
+      "value": "https://hackerone.com/acme",
+      "source": "https://github.com/acme/widget/blob/main/.github/SECURITY.md"
+    }
+  ],
+  "checks": [
+    {
+      "name": "github:repo",
+      "status": "found",
+      "detail": "default_branch=main"
+    },
+    {
+      "name": "github:private-vulnerability-reporting",
+      "status": "found",
+      "detail": "enabled"
+    },
+    {
+      "name": "github:SECURITY.md",
+      "status": "not-found"
+    },
+    {
+      "name": "github:.github/SECURITY.md",
+      "status": "found"
+    },
+    {
+      "name": "security.txt:acme.example",
+      "status": "found",
+      "detail": "valid"
+    }
+  ],
+  "security_txt": {
+    "url": "https://acme.example/.well-known/security.txt",
+    "contacts": [
+      "mailto:security@acme.example",
+      "https://acme.example/security/report"
+    ],
+    "expires": "2027-03-01T00:00:00Z",
+    "policy": [
+      "https://acme.example/security/policy"
+    ],
+    "signed": false,
+    "valid": true
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "input": "pypi:plainlib",
+  "target": {
+    "kind": "pypi",
+    "name": "plainlib"
+  },
+  "repo": {
+    "kind": "github",
+    "owner": "plain",
+    "repo": "lib"
+  },
+  "homepage": "https://plain.dev",
+  "channels": [
+    {
+      "priority": 3,
+      "type": "security.md-email",
+      "value": "mailto:jane.doe@plain.dev",
+      "source": "https://github.com/plain/lib/blob/master/SECURITY.md"
+    }
+  ],
+  "checks": [
+    {
+      "name": "registry:pypi",
+      "status": "found",
+      "detail": "repo=https://github.com/plain/lib homepage=https://plain.dev"
+    },
+    {
+      "name": "github:repo",
+      "status": "found",
+      "detail": "default_branch=master"
+    },
+    {
+      "name": "github:private-vulnerability-reporting",
+      "status": "not-found",
+      "detail": "disabled"
+    },
+    {
+      "name": "github:SECURITY.md",
+      "status": "found"
+    },
+    {
+      "name": "security.txt:plain.dev",
+      "status": "not-found"
+    }
+  ]
+}
