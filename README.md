@@ -4,6 +4,8 @@
 
 `disclose` takes a GitHub/GitLab repo, an npm/PyPI/crates.io package, or a domain, checks every common security reporting channel, and prints them ranked by priority. It's built for security researchers and maintainers who want to report privately and skip the public issue tracker.
 
+![demo](docs/demo.gif)
+
 ```console
 $ disclose https://github.com/acme/widget
 Target: github:acme/widget
