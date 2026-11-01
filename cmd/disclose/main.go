@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime/debug"
 	"time"
 
 	"github.com/ucsurf/disclose/internal/disclose"
@@ -14,6 +15,18 @@ import (
 )
 
 var version = "dev"
+
+// buildVersion returns the ldflags version, falling back to the module
+// version recorded by `go install module@version`.
+func buildVersion() string {
+	if version != "dev" {
+		return version
+	}
+	if bi, ok := debug.ReadBuildInfo(); ok && bi.Main.Version != "" && bi.Main.Version != "(devel)" {
+		return bi.Main.Version
+	}
+	return version
+}
 
 func main() { os.Exit(run(os.Args[1:], os.Stdout, os.Stderr, disclose.New())) }
 
@@ -34,7 +47,7 @@ func run(args []string, stdout, stderr io.Writer, c *disclose.Client) int {
 		return 2
 	}
 	if *showVersion {
-		fmt.Fprintln(stdout, "disclose", version)
+		fmt.Fprintln(stdout, "disclose", buildVersion())
 		return 0
 	}
 	if fs.NArg() != 1 {

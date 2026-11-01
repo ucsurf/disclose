@@ -59,6 +59,23 @@ disclose [flags] <github/gitlab URL | npm:pkg | pypi:pkg | crates:pkg | domain>
   -version         print version
 ```
 
+### Try it (real output, 2026-11-01)
+
+```console
+$ go install github.com/ucsurf/disclose/cmd/disclose@latest
+$ disclose npm:express
+Target: npm:express
+Repo:   github:expressjs/express
+Home:   https://expressjs.com/
+
+#  PRIORITY  TYPE          CHANNEL                                                       SOURCE                                          NOTE
+1  1         github-pvr    https://github.com/expressjs/express/security/advisories/new  GitHub API                                      private vulnerability reporting enabled
+2  2         security.txt  mailto:express-security@lists.openjsf.org                     https://expressjs.com/.well-known/security.txt
+
+$ disclose --json https://github.com/sigstore/cosign | jq -r '.channels[0].value'
+https://github.com/sigstore/cosign/security/advisories/new
+```
+
 Examples:
 
 ```sh
