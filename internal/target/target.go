@@ -54,6 +54,12 @@ func Parse(in string) (Target, error) {
 		}
 	}
 	raw := in
+	// scp-like git remotes: git@github.com:owner/repo.git
+	if at := strings.Index(raw, "@"); at >= 0 && !strings.Contains(raw, "://") {
+		if c := strings.Index(raw[at:], ":"); c > 0 {
+			raw = "ssh://" + raw[:at+c] + "/" + raw[at+c+1:]
+		}
+	}
 	if !strings.Contains(raw, "://") {
 		raw = "https://" + raw
 	}
@@ -73,6 +79,9 @@ func Parse(in string) (Target, error) {
 	case "gitlab.com":
 		if i := strings.Index(path, "/-/"); i >= 0 {
 			path = path[:i]
+		}
+		if strings.Contains(path, "//") {
+			return Target{}, fmt.Errorf("gitlab URL has empty path segment: %q", in)
 		}
 		i := strings.LastIndex(path, "/")
 		if i <= 0 || i == len(path)-1 {

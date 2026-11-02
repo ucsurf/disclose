@@ -23,6 +23,7 @@ func ParseSecurityTxt(body, url string, now time.Time) *SecurityTxtDoc {
 	d := &SecurityTxtDoc{URL: url, Contacts: []string{}}
 	expiresCount := 0
 	sc := bufio.NewScanner(strings.NewReader(body))
+	sc.Buffer(make([]byte, 0, 64*1024), len(body)+1)
 	for sc.Scan() {
 		line := strings.TrimSpace(sc.Text())
 		if strings.HasPrefix(line, "-----BEGIN PGP SIGNED MESSAGE") {
@@ -38,6 +39,10 @@ func ParseSecurityTxt(body, url string, now time.Time) *SecurityTxtDoc {
 		v = strings.TrimSpace(v)
 		switch strings.ToLower(strings.TrimSpace(k)) {
 		case "contact":
+			if v == "" {
+				d.Problems = append(d.Problems, "empty Contact field")
+				continue
+			}
 			d.Contacts = append(d.Contacts, v)
 		case "expires":
 			expiresCount++
