@@ -157,3 +157,5 @@ To report a vulnerability in `disclose` itself, use GitHub private vulnerability
 ## License
 
 [Apache-2.0](LICENSE)
+
+If this tool helps you, you can support the work on [Buy Me a Coffee](https://buymeacoffee.com/ucsurf).
